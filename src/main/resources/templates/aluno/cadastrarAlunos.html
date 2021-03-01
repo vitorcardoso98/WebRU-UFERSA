@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Web-RU UFERSA</title>
+</head>
+
+<body>
+	<h1>Cadastro de alunos</h1>
+	<table border="1 px">
+		<thead>
+			<tr>
+				<th>Matrícula</th>
+				<th>Nome</th>
+				<th>Tipo</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="aluno : ${alunos}">
+				<td><span th:text="${aluno.matricula}"></span></td>
+				<td><span th:text="${aluno.nome}"></span></td>
+				<td><span th:text="${aluno.tipo}"></span></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>
