@@ -25,6 +25,7 @@ public class Aluno implements Serializable{
 	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
+	
 	public String getMatricula() {
 		return matricula;
 	}
