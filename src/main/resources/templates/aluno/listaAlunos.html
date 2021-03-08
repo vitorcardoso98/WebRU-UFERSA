@@ -9,8 +9,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 </head>
 
 <body>
-	<h1>Cadastro de alunos</h1>
-	<table border="1 px">
+	<h1>Alunos cadastrados no Web RU</h1>
+	<table border="1px">
 		<thead>
 			<tr>
 				<th>Matrícula</th>
@@ -26,6 +26,10 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 			</tr>
 		</tbody>
 	</table>
+	
+	<form th:action="@{/cadastrarAluno}" method="POST">
+		<button type="submit">Importar Alunos</button>
+	</form>
 </body>
 
 </html>
