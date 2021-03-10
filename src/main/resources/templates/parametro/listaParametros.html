@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	  
-<html>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Web RU - Parâmetros</title>
+</head>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>Web RU - Parâmetros</title>
-	</head>
+<body>
+	<table border="1px">
+		<thead>
+			<tr>
+				<td>Código</td>
+				<td>Descrição</td>
+				<td>Valor</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="parametro: ${parametros}">
+				<td th:text="${parametro.codigo}"></td>
+				<td th:text="${parametro.descricao}"></td>
+				<td th:text="${parametro.valor}"></td>
+				<td><a th:href="@{/parametro/{codigoParametro}(codigoParametro=${parametro.codigo})}">Editar</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
 
-	<body>
-		<table border="1px">
-			<thead>
-				<tr>
-					<td>Código</td>
-					<td>Descrição</td>
-					<td>Valor</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="parametro: ${parametros}">
-					<td th:text="${parametro.codigo"></td>
-					<td th:text="${parametro.descricao}"></td>
-					<td th:text="${parametro.valor}"></td>
-				</tr>
-			</tbody>
-		</table>
-	</body>
-	
 </html>

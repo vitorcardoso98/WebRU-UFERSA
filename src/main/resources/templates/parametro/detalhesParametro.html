@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+<title>Web RU - Detalhes do Parâmetro</title>
+</head>
+<body>
+	<form
+		th:action="@{/atualizar/{codigoParametro}(codigoParametro=${parametro.codigo})}"
+		th:object="${parametro}" method="post">
+		Código: <input type="text" th:field="${parametro.codigo}" name="codigo" readonly/><br />
+		Descrição: <input type="text" th:field="${parametro.descricao}" name="descricao" /><br /> Valor: <input
+			type="text" th:field="${parametro.valor}" name="valor" /><br />
+		<button type="submit">Salvar alterações</button>
+	</form>
+</body>
+
+</html>
