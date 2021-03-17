@@ -29,7 +29,6 @@ public class AlunoController {
 		return modeloAluno;
 	}
 	
-	
 	@RequestMapping(value="/cadastrarAluno", method=RequestMethod.POST)
 	public String cadastrarAlunos() {
 

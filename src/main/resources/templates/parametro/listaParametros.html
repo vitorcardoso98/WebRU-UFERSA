@@ -19,7 +19,7 @@
 			<tr th:each="parametro: ${parametros}">
 				<td th:text="${parametro.codigo}"></td>
 				<td th:text="${parametro.descricao}"></td>
-				<td th:text="${parametro.valor}"></td>
+				<td><span th:text="${#temporals.format(parametro.horario, 'HH:mm')}"></span></td>
 				<td><a th:href="@{/parametro/{codigoParametro}(codigoParametro=${parametro.codigo})}">Editar</a></td>
 			</tr>
 		</tbody>

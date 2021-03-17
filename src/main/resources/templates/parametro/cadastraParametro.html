@@ -11,7 +11,13 @@
 	<body>
 		<form method="POST">
 			Descrição: <input type="text" name="descricao"/><br/>
-			Valor: <input type="text" name="valor"/><br/>
+			Valor: <input type="time" name="horario"/><br/>
+			
+			<select name="identificador">
+            	<option value="NULL" selected>-SELECIONE-</option>
+                <option value="VL_PADRAO_JANTAR">JANTAR</option>
+                <option value="VL_PADRAO_ALMOCO">ALMOÇO</option>
+            </select>
 			<button type="submit">Cadastrar</button>
 		</form>
 	</body>

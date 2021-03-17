@@ -6,4 +6,6 @@ import com.ufersa.webru.model.Aluno;
 
 public interface AlunoRepository extends CrudRepository<Aluno, Long> {
 
+	Aluno findByMatricula(String matricula);
+	
 }
