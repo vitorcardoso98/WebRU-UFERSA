@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ufersa.webru.model.ParametroHorario;
+import com.ufersa.webru.model.ParametroValorMonetario;
 import com.ufersa.webru.repositories.ParametroHorarioRepository;
+import com.ufersa.webru.repositories.ParametroValorMonetarioRepository;
 
 @Controller
 public class ParametroHorarioController {
@@ -15,25 +17,15 @@ public class ParametroHorarioController {
 	@Autowired
 	private ParametroHorarioRepository parametroHorarioRepository;
 
-	@RequestMapping(value="/cadastrarParametro", method=RequestMethod.GET)
-	public String formularioCadastrarParametro() {
-		return "parametro/cadastraParametro";
+	@RequestMapping(value="/cadastrarParametroHorario", method=RequestMethod.GET)
+	public String formularioCadastrarParametroHorario() {
+		return "parametro/cadastraParametroHorario";
 	}
 	
-	@RequestMapping(value="/cadastrarParametro", method=RequestMethod.POST)
+	@RequestMapping(value="/cadastrarParametroHorario", method=RequestMethod.POST)
 	public String cadastrarParametro(ParametroHorario parametroHora) {
-		System.out.println(parametroHora.getIdentificador());
 		parametroHorarioRepository.save(parametroHora);
-		return "redirect:/cadastrarParametro";
+		return "redirect:/cadastrarParametroHorario";
 	}
-	
-	@RequestMapping(value="/listarParametros", method=RequestMethod.GET)
-	public ModelAndView listarParametros() {
-		ModelAndView modeloParametro = new ModelAndView("parametro/listaParametros");
-		Iterable<ParametroHorario> parametros = parametroHorarioRepository.findAll();
-		modeloParametro.addObject("parametros", parametros);
-		return modeloParametro;
-	}
-	
 	
 }

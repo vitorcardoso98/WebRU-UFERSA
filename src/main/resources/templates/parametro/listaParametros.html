@@ -16,11 +16,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="parametro: ${parametros}">
-				<td th:text="${parametro.codigo}"></td>
-				<td th:text="${parametro.descricao}"></td>
-				<td><span th:text="${#temporals.format(parametro.horario, 'HH:mm')}"></span></td>
-				<td><a th:href="@{/parametro/{codigoParametro}(codigoParametro=${parametro.codigo})}">Editar</a></td>
+			<tr th:each="parametroHorario: ${parametrosHorarios}">
+				<td th:text="${parametroHorario.codigo}"></td>
+				<td th:text="${parametroHorario.descricao}"></td>
+				<td><span th:text="${#temporals.format(parametroHorario.horario, 'HH:mm')}"></span></td>
+			</tr >
+			<tr th:each="parametroMonetario: ${parametrosMonetarios}">
+				<td th:text="${parametroMonetario.codigo}"></td>
+				<td th:text="${parametroMonetario.descricao}"></td>
+				<td th:text="${parametroMonetario.valorMonetario}"></td>
 			</tr>
 		</tbody>
 	</table>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Web RU - Refeições</title>
+</head>
+
+<body>
+	<table border="1px">
+		<thead>
+			<tr>
+				<td>Data</td>
+				<td>Tipo</td>
+				<td>Subsídio</td>
+				<td>Valor</td>
+				<td>Aluno</td>
+			</tr>
+			<tr th:each="refeicao: ${refeicoes}">
+				<td><span th:text="${#temporals.format(refeicao.dataRefeicao, 'dd-MM-yyyy')}"></span></td>
+				<td th:text="${refeicao.tipoRefeicao}"></td>
+				<td th:text="${refeicao.tipoSubsidio}"></td>
+				<td th:text="${refeicao.valor}"></td>
+				<td th:text="${refeicao.aluno.nome}"></td>
+			</tr>
+		</thead>
+</body>
+
+</html>

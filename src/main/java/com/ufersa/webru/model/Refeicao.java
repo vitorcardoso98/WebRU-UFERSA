@@ -1,6 +1,7 @@
 package com.ufersa.webru.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -22,6 +23,8 @@ public class Refeicao implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long idRefeicao;
+    private double valor;
+    private LocalDate dataRefeicao;
     
     @Enumerated(EnumType.STRING)
 	private TipoRefeicaoEnum tipoRefeicao;
@@ -57,4 +60,17 @@ public class Refeicao implements Serializable{
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
+	public double getValor() {
+		return valor;
+	}
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+	public LocalDate getDataRefeicao() {
+		return dataRefeicao;
+	}
+	public void setDataRefeicao(LocalDate dataRefeicao) {
+		this.dataRefeicao = dataRefeicao;
+	}
+
 }

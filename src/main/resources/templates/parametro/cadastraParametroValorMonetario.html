@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Web RU - Cadastrar Novo Parâmetro</title>
+	</head>
+
+	
+	<body>
+		<form method="POST">
+			Descrição: <input type="text" name="descricao"/><br/>
+			Valor: <input type="number" name="valorMonetario"/><br/>
+			
+			<select name="identificador">
+            	<option value="NULL" selected>-SELECIONE-</option>
+                <option value="VL_PADRAO_JANTAR">JANTAR</option>
+                <option value="VL_PADRAO_ALMOCO">ALMOÇO</option>
+            </select>
+			<button type="submit">Cadastrar</button>
+		</form>
+	</body>
+
+</html>
