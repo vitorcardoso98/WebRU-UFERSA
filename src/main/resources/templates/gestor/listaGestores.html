@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Web-RU UFERSA</title>
+</head>
+
+<body>
+	<h1>Gestores cadastrados no Web RU</h1>
+	<table border="1px">
+		<thead>
+			<tr>
+				<th>Matrícula</th>
+				<th>Nome</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="gestor : ${gestores}">
+				<td><span th:text="${gestor.matricula}"></span></td>
+				<td><span th:text="${gestor.nome}"></span></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<form th:action="@{/importarGestores}" method="post">
+		<button type="submit">Importar Gestores</button>
+	</form>
+</body>
+</html>

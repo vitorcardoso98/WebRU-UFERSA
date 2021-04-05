@@ -48,26 +48,34 @@ public class RefeicaoController {
 		
 		ParametroHorario parametroHorarioAlmoco = parametroHorarioRepository.findByIdentificador("HORARIO_PADRAO_ALMOCO");
 		ParametroValorMonetario parametroValorAlmoco = parametroValorMonetarioRepository.findByIdentificador("VL_PADRAO_ALMOCO");
+		ParametroValorMonetario parametroValorJantar = parametroValorMonetarioRepository.findByIdentificador("VL_PADRAO_JANTAR");
+		ParametroValorMonetario parametroValorAlmocoAluno = parametroValorMonetarioRepository.findByIdentificador("VL_PADRAO_ALMOCO_ALUNO");
+		ParametroValorMonetario parametroValorJantarAluno = parametroValorMonetarioRepository.findByIdentificador("VL_PADRAO_JANTAR_ALUNO");
 		
 		Refeicao refeicao = new Refeicao();
 		
 		if(aluno.getTipo().equalsIgnoreCase("UFERSA")) {
 			refeicao.setTipoSubsidio(TipoSubsidioEnum.INTEGRAL);
-			refeicao.setAluno(aluno);
-			refeicao.setDataRefeicao(LocalDate.now());
 			if(LocalTime.now().isBefore(parametroHorarioAlmoco.getHorario())) {
 				refeicao.setTipoRefeicao(TipoRefeicaoEnum.ALMOCO);
 				refeicao.setValor(parametroValorAlmoco.getValorMonetario());
 			}else {
 				refeicao.setTipoRefeicao(TipoRefeicaoEnum.JANTAR);
-				refeicao.setValor(10.0);
+				refeicao.setValor(parametroValorJantar.getValorMonetario());
 			}
 		}else {
 			refeicao.setTipoSubsidio(TipoSubsidioEnum.PARCIAL);
-			refeicao.setTipoRefeicao(TipoRefeicaoEnum.JANTAR);
-			refeicao.setAluno(aluno);
-			refeicao.setValor(7.50);
+			if(LocalTime.now().isBefore(parametroHorarioAlmoco.getHorario())) {
+				refeicao.setTipoRefeicao(TipoRefeicaoEnum.ALMOCO);
+				refeicao.setValor(parametroValorAlmoco.getValorMonetario() - parametroValorAlmocoAluno.getValorMonetario());
+			}else {
+				refeicao.setTipoRefeicao(TipoRefeicaoEnum.JANTAR);
+				refeicao.setValor(parametroValorJantar.getValorMonetario() - parametroValorJantarAluno.getValorMonetario());
+			}
 		}
+		
+		refeicao.setDataRefeicao(LocalDate.now());
+		refeicao.setAluno(aluno);
 		
 		refeicaoRepository.save(refeicao);
 		return "redirect:/cadastrarRefeicao";
