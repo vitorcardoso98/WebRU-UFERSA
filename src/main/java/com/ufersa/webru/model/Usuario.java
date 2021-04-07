@@ -19,8 +19,8 @@ public class Usuario implements UserDetails, Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	String login;
-	String senha;
+	private String login;
+	private String senha;
 	
 	@ManyToMany
 	@JoinTable( 

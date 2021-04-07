@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,7 +55,7 @@ public class RefeicaoController {
 		
 		Refeicao refeicao = new Refeicao();
 		
-		if(aluno.getTipo().equalsIgnoreCase("UFERSA")) {
+		if(aluno.getTipo().equalsIgnoreCase("PROAE")) {
 			refeicao.setTipoSubsidio(TipoSubsidioEnum.INTEGRAL);
 			if(LocalTime.now().isBefore(parametroHorarioAlmoco.getHorario())) {
 				refeicao.setTipoRefeicao(TipoRefeicaoEnum.ALMOCO);
@@ -86,6 +87,44 @@ public class RefeicaoController {
 		ModelAndView modeloRefeicao = new ModelAndView("refeicao/listaRefeicoes");
 		Iterable<Refeicao> refeicoes = refeicaoRepository.findAll();
 		modeloRefeicao.addObject("refeicoes", refeicoes);
+		return modeloRefeicao;
+	}
+	
+	@RequestMapping(value="/relatorioRefeicoes", method=RequestMethod.GET)
+	public ModelAndView relatorioRefeicoes(Model model) {
+		Double valorTotalAlmocoIntegral = 0.0;
+		Double valorTotalAlmocoParcial = 0.0;
+		Double valorTotalJantarIntegral = 0.0;
+		Double valorTotalJantarParcial = 0.0;
+		Iterable<Refeicao> refeicoes = refeicaoRepository.findAll();
+		for(Refeicao refeicao: refeicoes) {
+			if(refeicao.getTipoRefeicao() == TipoRefeicaoEnum.ALMOCO) {
+				if(refeicao.getTipoSubsidio() == TipoSubsidioEnum.INTEGRAL) {
+					valorTotalAlmocoIntegral = valorTotalAlmocoIntegral + refeicao.getValor();
+				}else {
+					valorTotalAlmocoParcial = valorTotalAlmocoParcial + refeicao.getValor();
+				}
+			}else {
+				if((refeicao.getTipoSubsidio() == TipoSubsidioEnum.INTEGRAL)) {
+					valorTotalJantarIntegral = valorTotalJantarIntegral + refeicao.getValor();
+				}else {
+					valorTotalJantarParcial = valorTotalJantarParcial + refeicao.getValor();
+				}
+			}
+		}
+		
+		ModelAndView modeloRefeicao = new ModelAndView("refeicao/relatorioRefeicoes");
+		model.addAttribute("valorTotalAlmocoIntegral", valorTotalAlmocoIntegral);
+		model.addAttribute("valorTotalAlmocoParcial", valorTotalAlmocoParcial);
+		model.addAttribute("valorTotalJantarIntegral", valorTotalJantarIntegral);
+		model.addAttribute("valorTotalJantarParcial", valorTotalJantarParcial);
+		modeloRefeicao.addObject(model);
+		
+		valorTotalAlmocoIntegral = 0.0;
+		valorTotalAlmocoParcial = 0.0;
+		valorTotalJantarIntegral = 0.0;
+		valorTotalJantarParcial = 0.0;
+		
 		return modeloRefeicao;
 	}
 	

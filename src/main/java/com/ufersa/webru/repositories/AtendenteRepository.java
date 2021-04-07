@@ -3,9 +3,9 @@ package com.ufersa.webru.repositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ufersa.webru.model.Gestor;
+import com.ufersa.webru.model.Atendente;
 
 @Repository
-public interface GestorRepository extends CrudRepository<Gestor, String>{
+public interface AtendenteRepository extends CrudRepository<Atendente, String>{
 
 }

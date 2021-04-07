@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+<title>Web RU - Relatório de refeições</title>
+</head>
+<body>
+	<form>
+	<table border="1px">
+		<thead>
+			<tr>
+				<th>Tipos de refeições</th>
+				<th>Valor total R$</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Almoços integrais</td>
+				<td><span th:text="${valorTotalAlmocoIntegral}"></span></td>
+			</tr>
+			<tr>
+				<td>Almoços parciais</td>
+				<td><span th:text="${valorTotalAlmocoParcial}"></span></td>
+			</tr>
+			<tr>
+				<td>Jantares integrais</td>
+				<td><span th:text="${valorTotalJantarIntegral}"></span></td>
+			</tr>
+			<tr>
+				<td>Jantares parciais</td>
+				<td><span th:text="${valorTotalJantarParcial}"></span></td>
+			</tr>
+		</tbody>
+	</table>
+	</form>
+</body>
+
+</html>
