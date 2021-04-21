@@ -45,5 +45,11 @@ public class Aluno implements Serializable{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	@Override
+	public String toString() {
+		return "Aluno [codigo=" + codigo + ", matricula=" + matricula + ", nome=" + nome + ", tipo=" + tipo + "]";
+	}
+	
+	
 	
 }

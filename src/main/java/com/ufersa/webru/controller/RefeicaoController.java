@@ -2,14 +2,15 @@ package com.ufersa.webru.controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ufersa.webru.enums.TipoRefeicaoEnum;
@@ -18,10 +19,12 @@ import com.ufersa.webru.model.Aluno;
 import com.ufersa.webru.model.ParametroHorario;
 import com.ufersa.webru.model.ParametroValorMonetario;
 import com.ufersa.webru.model.Refeicao;
+import com.ufersa.webru.model.RelatorioRefeicao;
 import com.ufersa.webru.repositories.AlunoRepository;
 import com.ufersa.webru.repositories.ParametroHorarioRepository;
 import com.ufersa.webru.repositories.ParametroValorMonetarioRepository;
 import com.ufersa.webru.repositories.RefeicaoRepository;
+import com.ufersa.webru.services.RefeicaoService;
 
 @Controller
 public class RefeicaoController {
@@ -37,6 +40,9 @@ public class RefeicaoController {
 	
 	@Autowired
 	private ParametroValorMonetarioRepository parametroValorMonetarioRepository;
+	
+	@Autowired
+	private RefeicaoService refeicaoService;
 	
 	@RequestMapping(value="/cadastrarRefeicao", method=RequestMethod.GET)
 	public String formularioCadastrarRefeicao() {
@@ -81,6 +87,7 @@ public class RefeicaoController {
 		refeicaoRepository.save(refeicao);
 		return "redirect:/cadastrarRefeicao";
 	}
+
 	
 	@RequestMapping(value="/listarRefeicoes", method=RequestMethod.GET)
 	public ModelAndView listarRefeicoesCadastradas() {
@@ -90,42 +97,23 @@ public class RefeicaoController {
 		return modeloRefeicao;
 	}
 	
-	@RequestMapping(value="/relatorioRefeicoes", method=RequestMethod.GET)
-	public ModelAndView relatorioRefeicoes(Model model) {
-		Double valorTotalAlmocoIntegral = 0.0;
-		Double valorTotalAlmocoParcial = 0.0;
-		Double valorTotalJantarIntegral = 0.0;
-		Double valorTotalJantarParcial = 0.0;
-		Iterable<Refeicao> refeicoes = refeicaoRepository.findAll();
-		for(Refeicao refeicao: refeicoes) {
-			if(refeicao.getTipoRefeicao() == TipoRefeicaoEnum.ALMOCO) {
-				if(refeicao.getTipoSubsidio() == TipoSubsidioEnum.INTEGRAL) {
-					valorTotalAlmocoIntegral = valorTotalAlmocoIntegral + refeicao.getValor();
-				}else {
-					valorTotalAlmocoParcial = valorTotalAlmocoParcial + refeicao.getValor();
-				}
-			}else {
-				if((refeicao.getTipoSubsidio() == TipoSubsidioEnum.INTEGRAL)) {
-					valorTotalJantarIntegral = valorTotalJantarIntegral + refeicao.getValor();
-				}else {
-					valorTotalJantarParcial = valorTotalJantarParcial + refeicao.getValor();
-				}
-			}
-		}
-		
-		ModelAndView modeloRefeicao = new ModelAndView("refeicao/relatorioRefeicoes");
-		model.addAttribute("valorTotalAlmocoIntegral", valorTotalAlmocoIntegral);
-		model.addAttribute("valorTotalAlmocoParcial", valorTotalAlmocoParcial);
-		model.addAttribute("valorTotalJantarIntegral", valorTotalJantarIntegral);
-		model.addAttribute("valorTotalJantarParcial", valorTotalJantarParcial);
-		modeloRefeicao.addObject(model);
-		
-		valorTotalAlmocoIntegral = 0.0;
-		valorTotalAlmocoParcial = 0.0;
-		valorTotalJantarIntegral = 0.0;
-		valorTotalJantarParcial = 0.0;
-		
-		return modeloRefeicao;
+	@RequestMapping(value="/escolheMesRelatorio", method=RequestMethod.GET)
+	public ModelAndView escolheMesRelatorio() {
+		ModelAndView modeloRelatorioRefeicao = new ModelAndView("refeicao/escolheMesRelatorio");
+		return modeloRelatorioRefeicao;
 	}
 	
+	@RequestMapping(value="/relatorioCompletoRefeicoes", method=RequestMethod.GET)
+	public ModelAndView relatorioCompletoRefeicoes(@RequestParam String mes) { 
+		ModelAndView relatorio = new ModelAndView("refeicao/relatorioCompletoRefeicoes");
+		
+		List<Refeicao> refeicoes = refeicaoService.getRelatorioRefeicaoMes(mes);
+		RelatorioRefeicao valores = refeicaoService.getValoresRelatorio(mes);
+		
+		relatorio.addObject("refeicoes", refeicoes);
+		relatorio.addObject("valores", valores);
+		
+		return relatorio;
+		
+	}
 }

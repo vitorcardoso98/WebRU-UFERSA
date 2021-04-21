@@ -72,5 +72,55 @@ public class Refeicao implements Serializable{
 	public void setDataRefeicao(LocalDate dataRefeicao) {
 		this.dataRefeicao = dataRefeicao;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
+		result = prime * result + ((dataRefeicao == null) ? 0 : dataRefeicao.hashCode());
+		result = prime * result + (int) (idRefeicao ^ (idRefeicao >>> 32));
+		result = prime * result + ((tipoRefeicao == null) ? 0 : tipoRefeicao.hashCode());
+		result = prime * result + ((tipoSubsidio == null) ? 0 : tipoSubsidio.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(valor);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Refeicao other = (Refeicao) obj;
+		if (aluno == null) {
+			if (other.aluno != null)
+				return false;
+		} else if (!aluno.equals(other.aluno))
+			return false;
+		if (dataRefeicao == null) {
+			if (other.dataRefeicao != null)
+				return false;
+		} else if (!dataRefeicao.equals(other.dataRefeicao))
+			return false;
+		if (idRefeicao != other.idRefeicao)
+			return false;
+		if (tipoRefeicao != other.tipoRefeicao)
+			return false;
+		if (tipoSubsidio != other.tipoSubsidio)
+			return false;
+		if (Double.doubleToLongBits(valor) != Double.doubleToLongBits(other.valor))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Refeicao [idRefeicao=" + idRefeicao + ", valor=" + valor + ", dataRefeicao=" + dataRefeicao
+				+ ", tipoRefeicao=" + tipoRefeicao + ", tipoSubsidio=" + tipoSubsidio + ", aluno=" + aluno + "]";
+	}
+	
+	
 
 }

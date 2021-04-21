@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Web-RU UFERSA</title>
+</head>
+
+<body>
+<body>
+	<h1>Refeições de Março</h1>
+	<table border="1px">
+		<thead>
+			<tr>
+				<td>Data</td>
+				<td>Tipo</td>
+				<td>Subsídio</td>
+				<td>Valor</td>
+				<td>Aluno</td>
+			</tr>
+			<tr th:each="refeicao: ${refeicoes}">
+				<td><span th:text="${#temporals.format(refeicao.dataRefeicao, 'dd-MM-yyyy')}"></span></td>
+				<td th:text="${refeicao.tipoRefeicao}"></td>
+				<td th:text="${refeicao.tipoSubsidio}"></td>
+				<td th:text="${refeicao.valor}"></td>
+				<td th:text="${refeicao.aluno.nome}"></td>
+			</tr>
+		</thead>
+		
+		</table><br/>
+		
+		<h1>Descrição dos valores</h1>
+		
+		<table border="1px" th:object="${valores}">
+		<thead>
+			<tr>
+				<th>Tipos de refeições</th>
+				<th>Valor total R$</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Almoços integrais</td>
+				<td><span th:text="${valores.valorTotalRefeicoesAlmocoIntegral}"></span></td>
+			</tr>
+			<tr>
+				<td>Almoços parciais</td>
+				<td><span th:text="${valores.valorTotalRefeicoesAlmocoParcial}"></span></td>
+			</tr>
+			<tr>
+				<td>Jantares integrais</td>
+				<td><span th:text="${valores.valorTotalRefeicoesJantarIntegral}"></span></td>
+			</tr>
+			<tr>
+				<td>Jantares parciais</td>
+				<td><span th:text="${valores.valorTotalRefeicoesJantarParcial}"></span></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</body>
+</html>
