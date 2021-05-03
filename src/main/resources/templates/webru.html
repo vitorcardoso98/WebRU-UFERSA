@@ -2,19 +2,15 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
 <title>Web RU - UFERSA</title>
-
 <link type="text/css" rel="stylesheet"
 	href="bootstrap/css/bootstrap.min.css" media="screen,projection" />
 <!-- Our Custom CSS -->
 <link rel="stylesheet" href="style/webru.css">
-
 <!-- Font Awesome JS -->
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -25,10 +21,8 @@
 	integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
 	crossorigin="anonymous"></script>
 </head>
-
 <body>
 	<div class="wrapper">
-
 		<!-- Sidebar -->
 		<nav id="sidebar">
 			<div class="sidebar-header">
@@ -63,46 +57,17 @@
 				<li><a href="/listarParametros">Utilitários</a></li>
 			</ul>
 		</nav>
-
 		<!-- Page Content -->
 		<div id="content">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="container-fluid">
-
 					<button type="button" id="sidebarCollapse" class="btn btn-info">
 						<i class="fas fa-align-left"></i> <span>Recolher/Expandir</span>
 					</button>
-
 				</div>
 			</nav>
-			<div class="conteudo">
-				<h1>Alunos cadastrados no Web RU</h1>
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Matrícula</th>
-							<th scope="col">Nome</th>
-							<th scope="col">Tipo</th>
-							<th scope="col">Status</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="aluno : ${alunos}">
-							<td><span th:text="${aluno.matricula}"></span></td>
-							<td><span th:text="${aluno.nome}"></span></td>
-							<td><span th:text="${aluno.tipo}"></span></td>
-							<td><span th:text="${aluno.status}"></span></td>
-						</tr>
-					</tbody>
-				</table><br/>
-
-				<form th:action="@{/cadastrarAluno}" method="POST">
-					<button type="submit" class="btn btn-primary">Importar Alunos</button>
-				</form><br/>
-			</div>
 		</div>
 	</div>
-
 	<!-- jQuery CDN - Slim version (=without AJAX) -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -114,7 +79,6 @@
 		crossorigin="anonymous"></script>
 
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-
 	<script>
 		$(document).ready(function() {
 			$('#sidebarCollapse').on('click', function() {
@@ -123,5 +87,4 @@
 		});
 	</script>
 </body>
-
 </html>

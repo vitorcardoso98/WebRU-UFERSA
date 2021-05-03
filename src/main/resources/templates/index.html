@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Web-RU UFERSA</title>
-	<link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  media="screen,projection"/>
-	<link type="text/css" rel="stylesheet" href="style/style.css"  media="screen,projection"/>
+<meta charset="UTF-8">
+<title>Web-RU UFERSA</title>
+<link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css" media="screen,projection" />
+<link type="text/css" rel="stylesheet" href="style/index.css"
+	media="screen,projection" />
 </head>
 
 <body>
-	<h1>Olá</h1>
+
+	<div class="container-fluid px-0">
+    <header>
+        <div class="shape"></div> <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-transparent"> <a class="navbar-brand" href="#">Web RU - UFERSA</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+
+        </nav> <!-- ./ end of navbar -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 left-side"> <img src="image/img-home-webru.png" class="w-100"> </div>
+                    <div class="col-md-6 right-side">
+                    <h1>WEB RU - UFERSA</h1>
+                    <form th:action=@{/login} method="get">
+                    	<div class="text-center"> <button type="submit" class="btn order-button">LOGIN</button> </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
 	
-	 <script type="text/javascript" src="bootstrap/css/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

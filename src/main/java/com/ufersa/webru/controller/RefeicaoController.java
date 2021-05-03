@@ -1,7 +1,5 @@
 package com.ufersa.webru.controller;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,33 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ufersa.webru.enums.TipoRefeicaoEnum;
-import com.ufersa.webru.enums.TipoSubsidioEnum;
-import com.ufersa.webru.model.Aluno;
-import com.ufersa.webru.model.ParametroHorario;
-import com.ufersa.webru.model.ParametroValorMonetario;
 import com.ufersa.webru.model.Refeicao;
 import com.ufersa.webru.model.RelatorioRefeicao;
-import com.ufersa.webru.repositories.AlunoRepository;
-import com.ufersa.webru.repositories.ParametroHorarioRepository;
-import com.ufersa.webru.repositories.ParametroValorMonetarioRepository;
 import com.ufersa.webru.repositories.RefeicaoRepository;
 import com.ufersa.webru.services.RefeicaoService;
 
 @Controller
 public class RefeicaoController {
-
-	@Autowired
-	private AlunoRepository alunoRepository;
 	
 	@Autowired
 	private RefeicaoRepository refeicaoRepository;
-	
-	@Autowired
-	private ParametroHorarioRepository parametroHorarioRepository;
-	
-	@Autowired
-	private ParametroValorMonetarioRepository parametroValorMonetarioRepository;
 	
 	@Autowired
 	private RefeicaoService refeicaoService;
@@ -51,39 +32,7 @@ public class RefeicaoController {
 	
 	@RequestMapping(value="/cadastrarRefeicao", method=RequestMethod.POST)
 	public String cadastrarRefeicao(HttpServletRequest request) {
-		Aluno aluno = alunoRepository.findByMatricula(request.getParameter("matricula"));
-		
-		ParametroHorario parametroHorarioAlmoco = parametroHorarioRepository.findByIdentificador("HORARIO_PADRAO_ALMOCO");
-		ParametroValorMonetario parametroValorAlmoco = parametroValorMonetarioRepository.findByIdentificador("VL_PADRAO_ALMOCO");
-		ParametroValorMonetario parametroValorJantar = parametroValorMonetarioRepository.findByIdentificador("VL_PADRAO_JANTAR");
-		ParametroValorMonetario parametroValorAlmocoAluno = parametroValorMonetarioRepository.findByIdentificador("VL_PADRAO_ALMOCO_ALUNO");
-		ParametroValorMonetario parametroValorJantarAluno = parametroValorMonetarioRepository.findByIdentificador("VL_PADRAO_JANTAR_ALUNO");
-		
-		Refeicao refeicao = new Refeicao();
-		
-		if(aluno.getTipo().equalsIgnoreCase("PROAE")) {
-			refeicao.setTipoSubsidio(TipoSubsidioEnum.INTEGRAL);
-			if(LocalTime.now().isBefore(parametroHorarioAlmoco.getHorario())) {
-				refeicao.setTipoRefeicao(TipoRefeicaoEnum.ALMOCO);
-				refeicao.setValor(parametroValorAlmoco.getValorMonetario());
-			}else {
-				refeicao.setTipoRefeicao(TipoRefeicaoEnum.JANTAR);
-				refeicao.setValor(parametroValorJantar.getValorMonetario());
-			}
-		}else {
-			refeicao.setTipoSubsidio(TipoSubsidioEnum.PARCIAL);
-			if(LocalTime.now().isBefore(parametroHorarioAlmoco.getHorario())) {
-				refeicao.setTipoRefeicao(TipoRefeicaoEnum.ALMOCO);
-				refeicao.setValor(parametroValorAlmoco.getValorMonetario() - parametroValorAlmocoAluno.getValorMonetario());
-			}else {
-				refeicao.setTipoRefeicao(TipoRefeicaoEnum.JANTAR);
-				refeicao.setValor(parametroValorJantar.getValorMonetario() - parametroValorJantarAluno.getValorMonetario());
-			}
-		}
-		
-		refeicao.setDataRefeicao(LocalDate.now());
-		refeicao.setAluno(aluno);
-		
+		Refeicao refeicao = refeicaoService.cadastrarRefeicao(request.getParameter("matricula"));
 		refeicaoRepository.save(refeicao);
 		return "redirect:/cadastrarRefeicao";
 	}
@@ -92,7 +41,7 @@ public class RefeicaoController {
 	@RequestMapping(value="/listarRefeicoes", method=RequestMethod.GET)
 	public ModelAndView listarRefeicoesCadastradas() {
 		ModelAndView modeloRefeicao = new ModelAndView("refeicao/listaRefeicoes");
-		Iterable<Refeicao> refeicoes = refeicaoRepository.findAll();
+		Iterable<Refeicao> refeicoes = refeicaoService.listarRefeicoes();
 		modeloRefeicao.addObject("refeicoes", refeicoes);
 		return modeloRefeicao;
 	}
@@ -114,6 +63,5 @@ public class RefeicaoController {
 		relatorio.addObject("valores", valores);
 		
 		return relatorio;
-		
 	}
 }

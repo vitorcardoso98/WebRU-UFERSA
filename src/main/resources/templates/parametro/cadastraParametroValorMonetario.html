@@ -1,27 +1,117 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Web RU - UFERSA</title>
+<link type="text/css" rel="stylesheet"
+	href="bootstrap/css/bootstrap.min.css" media="screen,projection" />
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="style/webru.css">
+<!-- Font Awesome JS -->
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+	integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+	crossorigin="anonymous"></script>
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+	integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<!-- Sidebar -->
+		<nav id="sidebar">
+			<div class="sidebar-header">
+				<h3>
+					<a href="/webru">Web RU</a>
+				</h3>
+			</div>
+			<ul class="list-unstyled components">
+				<li class="active"><a href="#CadSubmenu" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle">Cadastros</a>
+					<ul class="list-unstyled collapse" id="CadSubmenu">
+						<li><a href="/cadastrarParametroValorMonetario">Cadastrar
+								Parâmetro - Valor Monetário</a></li>
+						<li><a href="/cadastrarParametroHorario">Cadastrar
+								Parâmetro - Horário</a></li>
+						<li><a href="/cadastrarAtendente">Cadastrar Atendente</a></li>
+					</ul></li>
+				<li class="active"><a href="#ConsultasSubmenu"
+					data-toggle="collapse" aria-expanded="false"
+					class="dropdown-toggle">Consultas</a>
+					<ul class="list-unstyled collapse" id="ConsultasSubmenu">
+						<li><a href="/listarAlunos">Listar alunos</a></li>
+						<li><a href="/listarGestores">Listar Gestores</a></li>
+						<li><a href="/listarRefeicoes">Todas as refeições</a></li>
+					</ul></li>
+				<li><a href="/cadastrarRefeicao">Movimentação</a></li>
+				<li class="active"><a href="#RelSubmenu" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle">Relatórios</a>
+					<ul class="list-unstyled collapse" id="RelSubmenu">
+						<li><a href="/escolheMesRelatorio">Controle de consumo</a></li>
+					</ul></li>
+				<li><a href="/listarParametros">Utilitários</a></li>
+			</ul>
+		</nav>
+		<!-- Page Content -->
+		<div id="content">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container-fluid">
+					<button type="button" id="sidebarCollapse" class="btn btn-info">
+						<i class="fas fa-align-left"></i> <span>Recolher/Expandir</span>
+					</button>
+				</div>
+			</nav>
+			<div class="conteudo">
+				<h1>Cadastrar Parâmetro de valor monetário</h1>
+				<br />
+				<form method="POST">
+					<div class="row">
+						<div class="col">
+							Descrição: <input type="text" class="form-control"
+								placeholder="Descrição" name="descricao" />
+						</div>
+						<div class="col">
+							Valor: <input type="number" class="form-control"
+								placeholder="Valor monetário" name="valorMonetario" />
+						</div>
+					</div>
+					<br /> <select class="custom-select" name="identificador">
+						<option value="NULL" selected>-SELECIONE-</option>
+						<option value="VL_PADRAO_JANTAR">VALOR PADRÃO DO JANTAR</option>
+						<option value="VL_PADRAO_ALMOCO">VALOR PADRÃO DO ALMOÇO</option>
+						<option value="VL_PADRAO_JANTAR_ALUNO">VALOR PADRÃO DO
+							JANTAR PAGO PELO ALUNO</option>
+						<option value="VL_PADRAO_ALMOCO_ALUNO">VALOR PADRÃO DO
+							ALMOÇO PAGO PELO ALUNO</option>
+					</select><br />
+					<br />
+					<button type="submit" class="btn btn-primary">Cadastrar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- jQuery CDN - Slim version (=without AJAX) -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<!-- Popper.JS -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+		integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+		crossorigin="anonymous"></script>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>Web RU - Cadastrar Novo Parâmetro</title>
-	</head>
-
-	
-	<body>
-		<form method="POST">
-			Descrição: <input type="text" name="descricao"/><br/>
-			Valor: <input type="number" name="valorMonetario"/><br/>
-			
-			<select name="identificador">
-            	<option value="NULL" selected>-SELECIONE-</option>
-                <option value="VL_PADRAO_JANTAR">VALOR PADRÃO DO JANTAR</option>
-                <option value="VL_PADRAO_ALMOCO">VALOR PADRÃO DO ALMOÇO</option>
-                <option value="VL_PADRAO_JANTAR_ALUNO">VALOR PADRÃO DO JANTAR PAGO PELO ALUNO</option>
-                <option value="VL_PADRAO_ALMOCO_ALUNO">VALOR PADRÃO DO ALMOÇO PAGO PELO ALUNO</option>
-            </select>
-			<button type="submit">Cadastrar</button>
-		</form>
-	</body>
-
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#sidebarCollapse').on('click', function() {
+				$('#sidebar').toggleClass('active');
+			});
+		});
+	</script>
+</body>
 </html>

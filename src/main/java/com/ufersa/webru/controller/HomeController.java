@@ -16,4 +16,9 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
+	
+	@RequestMapping(value="/webru", method=RequestMethod.GET)
+	public String webru() {
+		return "webru";
+	}
 }

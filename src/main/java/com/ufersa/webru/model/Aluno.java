@@ -18,6 +18,7 @@ public class Aluno implements Serializable{
 	String matricula;
 	String nome;
 	String tipo;
+	String status;
 	
 	public long getCodigo() {
 		return codigo;
@@ -43,6 +44,13 @@ public class Aluno implements Serializable{
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	@Override
 	public String toString() {
