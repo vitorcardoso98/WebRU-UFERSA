@@ -8,14 +8,17 @@
 <title>Web-RU UFERSA</title>
 <link type="text/css" rel="stylesheet"
 	href="bootstrap/css/bootstrap.min.css" media="screen,projection" />
+	<link type="text/css" rel="stylesheet"
+	href="style/avaliar.css" media="screen,projection" />
 </head>
 
-<body>
-
+<body class="text-center">
 	<div class="container">
 		<div class="row">
-			<div class=" col-12 col-sm-6 col-md-8 col-lg-10 col-xl-12">
-				<form method="post">
+			<div class="col">
+				<form class="form-avaliacao" method="post">
+					<img src="image/logo-webru.png" class="mb-4" width="180"  height="120">
+					<h1 class="h3 mb-3 font-weight-normal">Avalie o RU</h1>
 					<div class="form-group">
     					<label for="comentario">Comentário</label>
     					<textarea name="comentario" class="form-control" id="comentario" cols="3" rows="3" 
@@ -24,30 +27,28 @@
   					
   					<div class="form-group">
   						<label>Avaliação</label><br/>
-  						<label>Péssimo</label>
             			<div class="custom-control custom-radio custom-control-inline">
   							<input type="radio" id="opcao1" name="opcao" value="1" class="custom-control-input">
   							<label class="custom-control-label" for="opcao1">1</label>
 						</div>
 						<div class="custom-control custom-radio custom-control-inline">
-  							<input type="radio" id="opcao2" name="opcao" class="custom-control-input">
+  							<input type="radio" id="opcao2" name="opcao" value="2" class="custom-control-input">
   							<label class="custom-control-label" for="opcao2">2</label>
 						</div>
 						<div class="custom-control custom-radio custom-control-inline">
-  							<input type="radio" id="opcao3" name="opcao" class="custom-control-input">
+  							<input type="radio" id="opcao3" name="opcao" value="3" class="custom-control-input">
   							<label class="custom-control-label" for="opcao3">3</label>
 						</div>
 						<div class="custom-control custom-radio custom-control-inline">
-  							<input type="radio" id="opcao4" name="opcao" class="custom-control-input">
+  							<input type="radio" id="opcao4" name="opcao" value="4" class="custom-control-input">
   							<label class="custom-control-label" for="opcao4">4</label>
 						</div>
 						<div class="custom-control custom-radio custom-control-inline">
-  							<input type="radio" id="opcao5" name="opcao" class="custom-control-input">
+  							<input type="radio" id="opcao5" name="opcao" value="5" class="custom-control-input">
   							<label class="custom-control-label" for="opcao5">5</label>
-						</div>
-						<label>Execlente</label>  
+						</div>  
   					</div>
-					<button type="submit" class="btn btn-primary">Enviar</button>
+					<button type="submit" class="btn btn-primary btn-block">Enviar</button>
 				</form>
 			</div>
 		</div>

@@ -36,7 +36,6 @@ public class RefeicaoController {
 		refeicaoRepository.save(refeicao);
 		return "redirect:/cadastrarRefeicao";
 	}
-
 	
 	@RequestMapping(value="/listarRefeicoes", method=RequestMethod.GET)
 	public ModelAndView listarRefeicoesCadastradas() {

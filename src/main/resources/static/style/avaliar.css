@@ -1,0 +1,21 @@
+.form-avaliacao {
+	width: 100%;
+	max-width: 400px;
+	padding: 15px;
+	margin: auto;
+}
+
+h1 {
+	display: block;
+}
+
+textarea{
+	resize: none;
+}
+
+body{
+	display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
