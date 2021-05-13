@@ -110,7 +110,7 @@ public class RefeicaoService {
 				if ((refeicao.getTipoSubsidio() == TipoSubsidioEnum.INTEGRAL)) {
 					relatorioRefeicao.setValorTotalRefeicoesJantarIntegral(refeicao.getValor());
 				} else {
-					relatorioRefeicao.setValorTotalRefeicoesAlmocoParcial(refeicao.getValor());
+					relatorioRefeicao.setValorTotalRefeicoesJantarParcial(refeicao.getValor());
 				}
 			}
 		}

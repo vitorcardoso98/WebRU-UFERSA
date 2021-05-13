@@ -9,7 +9,6 @@ public class Gestor extends Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	
 	private String matricula;
 	private String nome;
 	

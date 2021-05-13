@@ -25,6 +25,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET, "/listarGestores").hasAnyRole("ADMIN_UFERSA")
 		.antMatchers(HttpMethod.POST, "/importarGestores").hasAnyRole("ADMIN_UFERSA")
 		
+		.antMatchers(HttpMethod.GET, "/listarRefeicoes").hasAnyRole("ADMIN_UFERSA","ATENDENTE")
+		.antMatchers(HttpMethod.GET, "/escolheMesRelatorio").hasAnyRole("ADMIN_UFERSA")
+		.antMatchers(HttpMethod.GET, "/relatorioCompletoRefeicoes").hasAnyRole("ADMIN_UFERSA")
+		
 		.antMatchers(HttpMethod.GET, "/cadastrarParametroHorario").hasAnyRole("ADMIN_UFERSA")
 		.antMatchers(HttpMethod.POST, "/cadastrarParametroHorario").hasAnyRole("ADMIN_UFERSA")
 		.antMatchers(HttpMethod.GET, "/cadastrarParametroValorMonetario").hasAnyRole("ADMIN_UFERSA")
@@ -39,6 +43,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		.antMatchers(HttpMethod.GET, "/cadastrarRefeicao").hasAnyRole("ATENDENTE")
 		.antMatchers(HttpMethod.POST, "/cadastrarRefeicao").hasAnyRole("ATENDENTE")
+		
+		.antMatchers(HttpMethod.GET, "/avaliar").hasAnyRole("ALUNO")
+		.antMatchers(HttpMethod.POST, "/avaliar").hasAnyRole("ALUNO")
+		.antMatchers(HttpMethod.GET, "/listarAvaliacoes").hasAnyRole("ADMIN_UFERSA")
 		
 		.anyRequest().authenticated()
 		.and().formLogin().loginPage("/login").usernameParameter("login")

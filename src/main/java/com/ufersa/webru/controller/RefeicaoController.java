@@ -33,8 +33,12 @@ public class RefeicaoController {
 	@RequestMapping(value="/cadastrarRefeicao", method=RequestMethod.POST)
 	public String cadastrarRefeicao(HttpServletRequest request) {
 		Refeicao refeicao = refeicaoService.cadastrarRefeicao(request.getParameter("matricula"));
-		refeicaoRepository.save(refeicao);
-		return "redirect:/cadastrarRefeicao";
+		if(refeicao==null) {
+			return "erroRefeicao";
+		}else {
+			refeicaoRepository.save(refeicao);
+			return "redirect:/cadastrarRefeicao";
+		}
 	}
 	
 	@RequestMapping(value="/listarRefeicoes", method=RequestMethod.GET)
