@@ -36,6 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET, "/listarParametros").hasAnyRole("ADMIN_UFERSA")
 		
 		.antMatchers(HttpMethod.GET, "/listarAlunos").hasAnyRole("ADMIN_UFERSA")
+		.antMatchers(HttpMethod.GET, "/relatorioAlunos").hasAnyRole("ADMIN_UFERSA")
 		.antMatchers(HttpMethod.POST, "/cadastrarAluno").hasAnyRole("ADMIN_UFERSA")
 		
 		.antMatchers(HttpMethod.GET, "/cadastrarAtendente").hasAnyRole("ADMIN_UFERSA")
@@ -43,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		.antMatchers(HttpMethod.GET, "/cadastrarRefeicao").hasAnyRole("ATENDENTE")
 		.antMatchers(HttpMethod.POST, "/cadastrarRefeicao").hasAnyRole("ATENDENTE")
+		.antMatchers(HttpMethod.GET, "/recuperarRefeicao").hasAnyRole("ATENDENTE")
 		
 		.antMatchers(HttpMethod.GET, "/avaliar").hasAnyRole("ALUNO")
 		.antMatchers(HttpMethod.POST, "/avaliar").hasAnyRole("ALUNO")

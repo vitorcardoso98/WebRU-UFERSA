@@ -31,13 +31,17 @@ public class RefeicaoController {
 	}
 	
 	@RequestMapping(value="/cadastrarRefeicao", method=RequestMethod.POST)
-	public String cadastrarRefeicao(HttpServletRequest request) {
+	public ModelAndView cadastrarRefeicao(HttpServletRequest request) {
 		Refeicao refeicao = refeicaoService.cadastrarRefeicao(request.getParameter("matricula"));
+		System.out.println();
 		if(refeicao==null) {
-			return "erroRefeicao";
+			ModelAndView modeloRefeicao = new ModelAndView("erroRefeicao");
+			return modeloRefeicao;
 		}else {
 			refeicaoRepository.save(refeicao);
-			return "redirect:/cadastrarRefeicao";
+			ModelAndView modeloRefeicao = new ModelAndView("refeicao/informacoesRefeicao");
+			modeloRefeicao.addObject("refeicao", refeicao);
+			return modeloRefeicao;
 		}
 	}
 	

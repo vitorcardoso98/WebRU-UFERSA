@@ -34,6 +34,14 @@ public class AlunoController {
 		modeloAluno.addObject("alunos", alunos);
 		return modeloAluno;
 	}
+	
+	@RequestMapping(value = "/relatorioAlunos", method = RequestMethod.GET)
+	public ModelAndView relatorioAlunos() {
+		ModelAndView modeloAluno = new ModelAndView("aluno/relatorioAlunos");
+		Iterable<Aluno> alunos = alunoRepository.findAll();
+		modeloAluno.addObject("alunos", alunos);
+		return modeloAluno;
+	}
 
 	@RequestMapping(value = "/cadastrarAluno", method = RequestMethod.POST)
 	public String cadastrarAlunos() {

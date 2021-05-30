@@ -50,6 +50,7 @@
 					data-toggle="collapse" aria-expanded="false"
 					class="dropdown-toggle">Consultas</a>
 					<ul class="list-unstyled collapse" id="ConsultasSubmenu">
+						<li><a href="/listarAvaliacoes">Consultar Avaliações</a></li>
 						<li><a href="/listarAlunos">Listar alunos</a></li>
 						<li><a href="/listarGestores">Listar Gestores</a></li>
 						<li><a href="/listarRefeicoes">Todas as refeições</a></li>
@@ -81,8 +82,8 @@
 					<thead>
 						<tr>
 							<th scope="col">Código</th>
-							<th scope="col">Descrição</td>
-							<th scope="col">Valor</td>
+							<th scope="col">Descrição</hd>
+							<th scope="col">Valor</hd>
 						</tr>
 					</thead>
 					<tbody>
@@ -91,11 +92,13 @@
 							<td th:text="${parametroHorario.descricao}"></td>
 							<td><span
 								th:text="${#temporals.format(parametroHorario.horario, 'HH:mm')}"></span></td>
+								<td><a class="btn btn-danger" th:href="@{/delete/{codigo}(codigo=${parametroHorario.codigo})}">Excluir</a></td>
 						</tr>
 						<tr th:each="parametroMonetario: ${parametrosMonetarios}">
 							<td th:text="${parametroMonetario.codigo}"></td>
 							<td th:text="${parametroMonetario.descricao}"></td>
 							<td th:text="${parametroMonetario.valorMonetario}"></td>
+							<td><a class="btn btn-danger" th:href="@{/delete/{codigo}(codigo=${parametroMonetario.codigo})}">Excluir</a></td>
 						</tr>
 					</tbody>
 				</table>
