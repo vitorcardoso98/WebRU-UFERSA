@@ -44,7 +44,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		.antMatchers(HttpMethod.GET, "/cadastrarRefeicao").hasAnyRole("ATENDENTE")
 		.antMatchers(HttpMethod.POST, "/cadastrarRefeicao").hasAnyRole("ATENDENTE")
-		.antMatchers(HttpMethod.GET, "/recuperarRefeicao").hasAnyRole("ATENDENTE")
 		
 		.antMatchers(HttpMethod.GET, "/avaliar").hasAnyRole("ALUNO")
 		.antMatchers(HttpMethod.POST, "/avaliar").hasAnyRole("ALUNO")
