@@ -12,6 +12,6 @@ import com.ufersa.webru.model.Refeicao;
 public interface RefeicaoRepository extends CrudRepository<Refeicao, Long> {
 
 	@Query(value = "SELECT * from refeicao where DATE_PART('MONTH', data_refeicao) = ?1", nativeQuery = true)
-	List<Refeicao> getRelatorio(String mes);
+	List<Refeicao> getRelatorio(double mes);
 
 }

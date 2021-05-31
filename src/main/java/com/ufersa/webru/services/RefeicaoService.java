@@ -89,7 +89,7 @@ public class RefeicaoService {
 	}
 
 	public List<Refeicao> getRelatorioRefeicaoMes(String mes) {
-		List<Refeicao> refeicoes = refeicaoRepository.getRelatorio(mes);
+		List<Refeicao> refeicoes = refeicaoRepository.getRelatorio(Double.parseDouble(mes));
 		return refeicoes;
 	}
 
@@ -97,7 +97,7 @@ public class RefeicaoService {
 
 		RelatorioRefeicao relatorioRefeicao = new RelatorioRefeicao();
 
-		List<Refeicao> refeicoes = refeicaoRepository.getRelatorio(mes);
+		List<Refeicao> refeicoes = refeicaoRepository.getRelatorio(Double.parseDouble(mes));
 
 		for (Refeicao refeicao : refeicoes) {
 			if (refeicao.getTipoRefeicao() == TipoRefeicaoEnum.ALMOCO) {
